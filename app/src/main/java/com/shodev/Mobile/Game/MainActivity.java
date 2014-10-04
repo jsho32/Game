@@ -38,6 +38,22 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TimeMode.class);
+                startActivity(intent);
+            }
+        });
+
+        pointsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PointsMode.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
