@@ -9,12 +9,9 @@ env:
 
 android:
   components:
-    - platform-tools
     - tools
     - build-tools-20.0.0
     - android-20
-    - addon-google_apis-google-19
-    - extra-android-support
 
   licenses:
       - android-sdk-license-5be876d5
