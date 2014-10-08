@@ -10,7 +10,6 @@ env:
 android:
   components:
     - tools
-    - android-20
 
 before_install:
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
