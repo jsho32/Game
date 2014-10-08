@@ -10,7 +10,7 @@ env:
 android:
   components:
     - tools
-    - build-tools-23.0.2
+    - build-tools-20.0.0
     - android-20
 
 before_install:
