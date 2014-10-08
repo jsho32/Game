@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Game</string>
-    <string name="main_header">Menu</string>
+    <string name="main_header">Main Menu</string>
     <string name="action_settings">Settings</string>
 
 </resources>
