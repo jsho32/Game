@@ -12,6 +12,8 @@ android:
     - tools
     - build-tools-23.0.2
     - android-20
+    - add-on
+    - extra
 
 before_install:
   - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
