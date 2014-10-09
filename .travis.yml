@@ -11,7 +11,7 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-20.0.0
+    - build-tools-23.0.2
     - android-20
 
   licenses:
