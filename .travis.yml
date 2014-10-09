@@ -12,6 +12,7 @@ android:
     - platform-tools
     - build-tools-23.0.4
     - tools
+    - sys-img-armeabi-v7a-android-19
     - android-20
 
   licenses:
