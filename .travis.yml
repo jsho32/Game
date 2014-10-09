@@ -24,4 +24,4 @@ before_install:
 
 install: true
 
-script: ./gradlew connectedCheck
+script: ./gradlew connectedAndroidTest
