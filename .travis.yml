@@ -20,10 +20,6 @@ android:
       - android-sdk-license-5be876d5
       - android-sdk-preview-license-52d11cd2
 
-before_install:
-  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
-
 install: true
 
 script: ./gradlew connectedCheck
