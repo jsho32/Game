@@ -10,7 +10,7 @@ env:
 android:
   components:
     - platform-tools
-    - build-tools-23.0.2
+    - build-tools-23.0.4
     - tools
     - android-20
 
