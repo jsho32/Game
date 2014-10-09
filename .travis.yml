@@ -5,7 +5,7 @@ notifications:
 
 env:
   matrix:
-    - ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-19 ANDROID_ABI=x86
 
 android:
   components:
@@ -13,6 +13,7 @@ android:
     - build-tools-23.0.4
     - tools
     - sys-img-armeabi-v7a-android-19
+    - sys-img-x86-android-19
     - android-20
 
   licenses:
