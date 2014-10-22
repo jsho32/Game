@@ -4,11 +4,114 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent" android:background="@drawable/rainbow_space">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="#AA575757">
+
+        <TextView
+            android:text="@string/time_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="@dimen/header_text_size"
+            android:textColor="#ffffff"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lives_label"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:gravity="end"
+            android:padding="@dimen/activity_horizontal_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lives"
+            android:text="00"
+            android:textSize="25sp"
+            android:textColor="#ffffb500"
+            android:gravity="end"
+            android:paddingTop="@dimen/activity_horizontal_margin"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time_label"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:gravity="end"
+            android:paddingTop="@dimen/activity_horizontal_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timer"
+            android:text="0:00"
+            android:textSize="25sp"
+            android:textColor="#ffff0000"
+            android:gravity="end"
+            android:padding="@dimen/activity_horizontal_margin"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:text="This is Time mode!"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:orientation="vertical">
+
+        <GridView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shapeGrid"
+            android:numColumns="10"
+            android:columnWidth="10dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:padding="10dp"
+            android:background="#5a575757"
+            android:gravity="center"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="5dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="This is where power ups etc. will go"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
