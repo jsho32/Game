@@ -11,8 +11,9 @@ import java.util.concurrent.TimeUnit;
 
 public class TimeMode extends Activity {
     private int[] shapeArray;
-    private TextView lives;
+    private TextView points;
     private TextView time;
+    private TextView lives;
 
     /** Called when activity is created */
     @Override
@@ -65,10 +66,12 @@ public class TimeMode extends Activity {
 
     /** Sets the initial values of all text views in activity layout */
     private void setTextViews() {
-        lives = (TextView) findViewById(R.id.lives);
+        points = (TextView) findViewById(R.id.points);
         time = (TextView) findViewById(R.id.timer);
-        lives.setText("10");
+        lives = (TextView) findViewById(R.id.lives);
+        points.setText("0");
         time.setText("2:00");
+        lives.setText("10");
     }
 
 }
