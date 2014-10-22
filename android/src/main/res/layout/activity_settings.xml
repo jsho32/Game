@@ -16,14 +16,14 @@
         android:textColor="#ffffff"
         android:text="@string/settings_header"
         android:textSize="@dimen/header_text_size"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:layout_marginBottom="@dimen/activity_default_margin"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_margin="@dimen/activity_default_margin"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin"
+        android:padding="@dimen/activity_default_margin"
         android:gravity="center_horizontal">
 
         <LinearLayout
@@ -32,7 +32,7 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:background="#AA575757"
-            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_margin="@dimen/activity_default_margin"
             android:padding="10dp">
 
             <TextView
@@ -41,8 +41,8 @@
                 android:id="@+id/sounds"
                 android:text="@string/volume_switch"
                 android:textSize="20sp"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_default_margin"
+                android:layout_marginEnd="@dimen/activity_default_margin"
                 android:padding="10dp"/>
 
             <CheckBox
@@ -60,7 +60,7 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:background="#AA575757"
-            android:layout_margin="@dimen/activity_vertical_margin"
+            android:layout_margin="@dimen/activity_default_margin"
             android:padding="10dp">
 
             <TextView
@@ -69,8 +69,8 @@
                 android:gravity="center"
                 android:text="@string/difficulty_switch"
                 android:textSize="20sp"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_default_margin"
+                android:layout_marginEnd="@dimen/activity_default_margin"
                 android:padding="10dp" />
 
         </LinearLayout>
@@ -91,8 +91,8 @@
                 android:gravity="center"
                 android:text="See more from us!!"
                 android:textSize="20sp"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_default_margin"
+                android:layout_marginEnd="@dimen/activity_default_margin"
                 android:padding="10dp" />
 
         </LinearLayout>
