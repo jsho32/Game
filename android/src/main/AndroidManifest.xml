@@ -20,9 +20,9 @@
 
         </activity>
 
-        <activity android:name=".Settings" android:label="Settings" />
-        <activity android:name=".TimeMode" android:label="Timed Mode" />
-        <activity android:name=".PointsMode" android:label="Points Mode" />
+        <activity android:name=".Settings" android:label="Settings" android:screenOrientation="portrait"/>
+        <activity android:name=".TimeMode" android:label="Timed Mode" android:screenOrientation="portrait"/>
+        <activity android:name=".PointsMode" android:label="Points Mode" android:screenOrientation="portrait"/>
 
     </application>
 
