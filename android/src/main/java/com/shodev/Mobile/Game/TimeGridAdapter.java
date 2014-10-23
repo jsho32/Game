@@ -3,17 +3,20 @@ package com.shodev.Mobile.Game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.support.v4.view.MotionEventCompat;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class TimeGridAdapter extends BaseAdapter {
-
     private Context context;
     private int[] data = null;
 
@@ -39,28 +42,22 @@ public class TimeGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, final View view, final ViewGroup parent) {
-        final ImageView shapeView;
+        final LinearLayout layout;
         if (view == null) {
-            shapeView = new ImageView(context);
+            layout = new LinearLayout(context);
+            layout.setLayoutParams(new AbsListView.LayoutParams(90, 90));
         } else {
-            shapeView = (ImageView) view;
+            layout = (LinearLayout) view;
         }
 
+        ImageView shapeView = new ImageView(context);
+        shapeView.setLayoutParams(new AbsListView.LayoutParams(65, 65));
         setImageResource(shapeView, data[position]);
-        shapeView.setClickable(true);
-        shapeView.setLayoutParams(new AbsListView.LayoutParams(70, 70));
+        layout.setClickable(true);
+        layout.addView(shapeView);
+        layout.setGravity(Gravity.CENTER);
 
-        shapeView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (v.getId() == shapeView.getId()) {
-                    shapeView.setBackgroundColor(Color.parseColor("#1e6dc8"));
-                }
-                return false;
-            }
-        });
-
-        return shapeView;
+        return layout;
     }
 
     private void setImageResource(ImageView view, int value) {
@@ -80,6 +77,10 @@ public class TimeGridAdapter extends BaseAdapter {
             view.setImageResource(R.drawable.white_circle);
         }
 
+    }
+
+    public int getPositionValue(int position) {
+        return data[position];
     }
 
 }
