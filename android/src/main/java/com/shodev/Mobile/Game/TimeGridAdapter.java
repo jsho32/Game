@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,16 +39,16 @@ public class TimeGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, final View view, final ViewGroup parent) {
-        final TextView shapeView;
+        final ImageView shapeView;
         if (view == null) {
-            shapeView = new TextView(context);
+            shapeView = new ImageView(context);
         } else {
-            shapeView = (TextView) view;
+            shapeView = (ImageView) view;
         }
 
-        shapeView.setText(String.valueOf(data[position]));
-        shapeView.setGravity(Gravity.CENTER);
+        setImageResource(shapeView, data[position]);
         shapeView.setClickable(true);
+        shapeView.setLayoutParams(new AbsListView.LayoutParams(70, 70));
 
         shapeView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -61,4 +62,24 @@ public class TimeGridAdapter extends BaseAdapter {
 
         return shapeView;
     }
+
+    private void setImageResource(ImageView view, int value) {
+        if (value == 1) {
+            view.setImageResource(R.drawable.gold_circle);
+        }
+        else if (value == 2) {
+            view.setImageResource(R.drawable.green_circle);
+        }
+        else if (value == 3) {
+            view.setImageResource(R.drawable.blue_circle);
+        }
+        else if (value == 4) {
+            view.setImageResource(R.drawable.purple_circle);
+        }
+        else {
+            view.setImageResource(R.drawable.white_circle);
+        }
+
+    }
+
 }
