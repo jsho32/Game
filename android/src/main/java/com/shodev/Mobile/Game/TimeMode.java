@@ -1,11 +1,17 @@
 package com.shodev.Mobile.Game;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +20,7 @@ public class TimeMode extends Activity {
     private TextView points;
     private TextView time;
     private TextView lives;
+
 
     /** Called when activity is created */
     @Override
@@ -31,9 +38,64 @@ public class TimeMode extends Activity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                GridView gridview = (GridView) findViewById(R.id.shapeGrid);
+                final List<Integer> selectedValues = new ArrayList<Integer>();
+                final List<Integer> selectedPositions = new ArrayList<Integer>();
+                final GridView gridview = (GridView) findViewById(R.id.shapeGrid);
                 final TimeGridAdapter gridadapter = new TimeGridAdapter(TimeMode.this, shapeArray);
                 gridview.setAdapter(gridadapter);
+                gridview.requestDisallowInterceptTouchEvent(true);
+                gridview.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int position;
+                        switch (event.getAction()) {
+                            case (MotionEvent.ACTION_DOWN):
+                                position = gridview.pointToPosition((int) event.getX(), (int) event.getY());
+                                Log.e("POSITION", String.valueOf(position));
+                                if (gridview.pointToPosition((int)event.getX(), (int)event.getY())!=-1) {
+                                    gridview.getChildAt(position).setBackgroundColor(Color.parseColor("#1e6dc8"));
+                                    if (!selectedPositions.contains(position)) {
+                                        selectedValues.add(gridadapter.getPositionValue(position));
+                                        selectedPositions.add(position);
+                                        Log.e("ADDED_VALUE", String.valueOf(gridadapter.getPositionValue(position)));
+                                    }
+                                }
+                                return true;
+
+                            case (MotionEvent.ACTION_MOVE):
+                                position = gridview.pointToPosition((int) event.getX(), (int) event.getY());
+                                if (gridview.pointToPosition((int)event.getX(), (int)event.getY())!=-1) {
+                                    gridview.getChildAt(position).setBackgroundColor(Color.parseColor("#1e6dc8"));
+                                    if (!selectedPositions.contains(position)) {
+                                        selectedValues.add(gridadapter.getPositionValue(position));
+                                        selectedPositions.add(position);
+                                        Log.e("ADDED_VALUE", String.valueOf(gridadapter.getPositionValue(position)));
+                                        Log.e("VALUES_LENGTH", String.valueOf(selectedValues.size()));
+                                        Log.e("ADDED_POSITION", String.valueOf(position));
+                                    }
+                                }
+                                return true;
+
+                            case (MotionEvent.ACTION_UP):
+                                Log.d("TouchTest", "Touch up");
+                                if (isBurstChips(selectedValues)) {
+                                    for (int ints : selectedPositions) {
+                                        gridview.getChildAt(ints).setBackgroundColor(Color.parseColor("#000000"));
+                                    }
+                                } else {
+                                    for (int ints : selectedPositions) {
+                                        gridview.getChildAt(ints).setBackgroundColor(Color.TRANSPARENT);
+                                    }
+                                }
+                                selectedPositions.clear();
+                                selectedValues.clear();
+                                break;
+                        }
+
+                        return false;
+                    }
+                });
+
                 new CountDownTimer(120000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
@@ -50,6 +112,17 @@ public class TimeMode extends Activity {
 
             }
         });
+    }
+
+    /** Checks to see that all values are identical and acceptable for bursting */
+    private boolean isBurstChips(List<Integer> values) {
+        int currentValue = values.get(0);
+        for (int ints : values) {
+            if (currentValue != ints) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /** Uses random number generator to set values in array that is displayed in grid */
