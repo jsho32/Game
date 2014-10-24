@@ -1,15 +1,13 @@
 package com.shodev.Mobile.Game;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +24,6 @@ public class TimeMode extends Activity {
     private TextView time;
     private TextView lives;
 
-
     /** Called when activity is created */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +31,7 @@ public class TimeMode extends Activity {
         setContentView(R.layout.time_mode_activity);
         setShapeArray();
         setTextViews();
+        countDown();
         gameRun();
     }
 
@@ -63,6 +61,7 @@ public class TimeMode extends Activity {
                                         selectedPositions.add(position);
                                     }
                                 }
+
                                 return true;
 
                             case (MotionEvent.ACTION_MOVE):
@@ -74,6 +73,7 @@ public class TimeMode extends Activity {
                                         selectedPositions.add(position);
                                     }
                                 }
+
                                 return true;
 
                             case (MotionEvent.ACTION_UP):
@@ -96,23 +96,27 @@ public class TimeMode extends Activity {
                         return false;
                     }
                 });
-
-                new CountDownTimer(120000, 1000) {
-
-                    public void onTick(long millisUntilFinished) {
-                        long minutes = TimeUnit.MINUTES.convert(millisUntilFinished, TimeUnit.MILLISECONDS);
-                        long seconds = TimeUnit.SECONDS.convert((millisUntilFinished - (minutes * 60000)), TimeUnit.MILLISECONDS);
-                        String divider = seconds < 10 ? ":0" : ":";
-                        time.setText(String.valueOf(minutes) + divider + String.valueOf(seconds));
-                    }
-
-                    public void onFinish() {
-                        time.setText("*0:00*");
-                    }
-                }.start();
-
             }
         });
+    }
+
+    public void countDown() {
+        new CountDownTimer(12000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                long minutes = TimeUnit.MINUTES.convert(millisUntilFinished, TimeUnit.MILLISECONDS);
+                long seconds = TimeUnit.SECONDS.convert((millisUntilFinished - (minutes * 60000)), TimeUnit.MILLISECONDS);
+                String divider = seconds < 10 ? ":0" : ":";
+                time.setText(String.valueOf(minutes) + divider + String.valueOf(seconds));
+            }
+
+            public void onFinish() {
+                time.setText("*0:00*");
+                Intent intent = new Intent(TimeMode.this, GameEndPopUp.class);
+                startActivity(intent);
+            }
+        }.start();
+
     }
 
     /** Checks to see that all values are identical and acceptable for bursting */
