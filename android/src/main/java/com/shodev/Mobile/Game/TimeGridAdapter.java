@@ -45,13 +45,15 @@ public class TimeGridAdapter extends BaseAdapter {
         final LinearLayout layout;
         if (view == null) {
             layout = new LinearLayout(context);
-            layout.setLayoutParams(new AbsListView.LayoutParams(90, 90));
+            layout.setLayoutParams(new AbsListView.LayoutParams(100, 100));
         } else {
             layout = (LinearLayout) view;
         }
 
+        layout.removeAllViews();
+
         ImageView shapeView = new ImageView(context);
-        shapeView.setLayoutParams(new AbsListView.LayoutParams(65, 65));
+        shapeView.setLayoutParams(new AbsListView.LayoutParams(45, 45));
         setImageResource(shapeView, data[position]);
         layout.setClickable(true);
         layout.addView(shapeView);
@@ -60,6 +62,7 @@ public class TimeGridAdapter extends BaseAdapter {
         return layout;
     }
 
+    /** Set chip based on value in data */
     private void setImageResource(ImageView view, int value) {
         if (value == 1) {
             view.setImageResource(R.drawable.gold_circle);
@@ -79,8 +82,14 @@ public class TimeGridAdapter extends BaseAdapter {
 
     }
 
+    /** return the value stored in a data position */
     public int getPositionValue(int position) {
         return data[position];
+    }
+
+    /** set a new value to a data position */
+    public void setPositionValue(int position, int value) {
+        data[position] = value;
     }
 
 }
