@@ -21,6 +21,7 @@ public class TimeMode extends Activity {
     private int[] shapeArray;
     private final int boardSize = 81;
     private final int columnSize = 9;
+    private int pointScore = 0;
     private TextView points;
     private TextView time;
     private TextView lives;
@@ -81,6 +82,7 @@ public class TimeMode extends Activity {
                                         gridview.getChildAt(ints).setBackgroundColor(Color.parseColor("#000000"));
                                     }
                                     burstChips(gridview, gridadapter, selectedPositions);
+                                    incrementScore(selectedPositions);
                                 } else {
                                     for (int ints : selectedPositions) {
                                         gridview.getChildAt(ints).setBackgroundColor(Color.TRANSPARENT);
@@ -158,6 +160,12 @@ public class TimeMode extends Activity {
         gridView.getChildAt(position).setBackgroundColor(Color.TRANSPARENT);
     }
 
+    /** Increment score based on amount of bursted chips */
+    private void incrementScore(List<Integer> positions) {
+        pointScore += (positions.size() - 1) * 10;
+        points.setText(String.valueOf(pointScore));
+    }
+
     /** Uses random number generator to set values in array that is displayed in grid */
     private void setShapeArray() {
         int max = 5;
@@ -175,7 +183,7 @@ public class TimeMode extends Activity {
         points = (TextView) findViewById(R.id.points);
         time = (TextView) findViewById(R.id.timer);
         lives = (TextView) findViewById(R.id.lives);
-        points.setText("0");
+        points.setText(String.valueOf(pointScore));
         time.setText("2:00");
         lives.setText("10");
     }
