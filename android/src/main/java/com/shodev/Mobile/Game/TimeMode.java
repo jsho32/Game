@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ import java.util.concurrent.TimeUnit;
 
 public class TimeMode extends Activity {
     private int[] shapeArray;
+    private final int boardSize = 81;
+    private final int columnSize = 9;
     private TextView points;
     private TextView time;
     private TextView lives;
@@ -51,13 +55,11 @@ public class TimeMode extends Activity {
                         switch (event.getAction()) {
                             case (MotionEvent.ACTION_DOWN):
                                 position = gridview.pointToPosition((int) event.getX(), (int) event.getY());
-                                Log.e("POSITION", String.valueOf(position));
                                 if (gridview.pointToPosition((int)event.getX(), (int)event.getY())!=-1) {
                                     gridview.getChildAt(position).setBackgroundColor(Color.parseColor("#1e6dc8"));
                                     if (!selectedPositions.contains(position)) {
                                         selectedValues.add(gridadapter.getPositionValue(position));
                                         selectedPositions.add(position);
-                                        Log.e("ADDED_VALUE", String.valueOf(gridadapter.getPositionValue(position)));
                                     }
                                 }
                                 return true;
@@ -69,19 +71,16 @@ public class TimeMode extends Activity {
                                     if (!selectedPositions.contains(position)) {
                                         selectedValues.add(gridadapter.getPositionValue(position));
                                         selectedPositions.add(position);
-                                        Log.e("ADDED_VALUE", String.valueOf(gridadapter.getPositionValue(position)));
-                                        Log.e("VALUES_LENGTH", String.valueOf(selectedValues.size()));
-                                        Log.e("ADDED_POSITION", String.valueOf(position));
                                     }
                                 }
                                 return true;
 
                             case (MotionEvent.ACTION_UP):
-                                Log.d("TouchTest", "Touch up");
-                                if (isBurstChips(selectedValues)) {
+                                if (isBurstable(selectedValues)) {
                                     for (int ints : selectedPositions) {
                                         gridview.getChildAt(ints).setBackgroundColor(Color.parseColor("#000000"));
                                     }
+                                    burstChips(gridview, gridadapter, selectedPositions);
                                 } else {
                                     for (int ints : selectedPositions) {
                                         gridview.getChildAt(ints).setBackgroundColor(Color.TRANSPARENT);
@@ -115,22 +114,56 @@ public class TimeMode extends Activity {
     }
 
     /** Checks to see that all values are identical and acceptable for bursting */
-    private boolean isBurstChips(List<Integer> values) {
-        int currentValue = values.get(0);
-        for (int ints : values) {
-            if (currentValue != ints) {
-                return false;
-            }
+    private boolean isBurstable(List<Integer> values) {
+        int currentValue;
+        if (values.size() != 0) {
+            currentValue = values.get(0);
+        } else {
+            return false;
         }
-        return true;
+
+        if (values.size() >= 2) {
+            for (int ints : values) {
+                if (currentValue != ints) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /** Bursts all applicable chips and moves views above bursted view down */
+    private void burstChips(GridView gridView, TimeGridAdapter gridAdapter, List<Integer> positions) {
+        for (int ints : positions) {
+            for (int i = ints; i >= 0; i -= columnSize) {
+                if ((i - columnSize) >= 0) {
+                    int value = gridAdapter.getPositionValue(i - columnSize);
+                    gridAdapter.getView(i - columnSize, gridView.getChildAt(i), gridView);
+                    gridAdapter.setPositionValue(i, value);
+                } else {
+                    Random rand = new Random();
+                    int max = 5, min = 1;
+                    int randomNumber = rand.nextInt((max - min) + 1) + min;
+                    gridAdapter.setPositionValue(i, randomNumber);
+                    gridAdapter.getView(i, gridView.getChildAt(i), gridView);
+                }
+            }
+            clearHighlight(gridView, ints);
+        }
+    }
+
+    /** clears background highlights of selected chips */
+    private void clearHighlight(GridView gridView, int position) {
+        gridView.getChildAt(position).setBackgroundColor(Color.TRANSPARENT);
     }
 
     /** Uses random number generator to set values in array that is displayed in grid */
     private void setShapeArray() {
         int max = 5;
         int min = 1;
-        shapeArray = new int[100];
-        for (int i = 0; i < 100; i++) {
+        shapeArray = new int[boardSize];
+        for (int i = 0; i < boardSize; i++) {
             Random rand = new Random();
             int randomNumber = rand.nextInt((max - min) + 1) + min;
             shapeArray[i] = randomNumber;
