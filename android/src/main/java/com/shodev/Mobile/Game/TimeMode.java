@@ -35,6 +35,12 @@ public class TimeMode extends Activity {
         gameRun();
     }
 
+    /** Override the back button to go to main menu */
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TimeMode.this, MainActivity.class);
+        startActivity(intent);
+    }
 
     /** runs on the thread */
     private void gameRun() {
