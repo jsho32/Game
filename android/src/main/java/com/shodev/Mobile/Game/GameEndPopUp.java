@@ -33,6 +33,15 @@ public class GameEndPopUp extends FragmentActivity {
                 startActivity(intent);
             }
         });
+
+        TextView mainMenu = (TextView) findViewById(R.id.pop_main);
+        mainMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GameEndPopUp.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
