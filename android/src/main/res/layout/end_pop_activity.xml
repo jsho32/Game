@@ -9,14 +9,70 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="#AA575757"
-        android:padding="@dimen/activity_default_margin">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_default_margin">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/final_score_label"
+            android:gravity="center"
+            android:background="#aa004eae"
+            android:padding="@dimen/activity_default_margin"
+            android:textSize="@dimen/header_text_size"/>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/final_score"
+                android:text="0"
+                android:textColor="#ffffb500"
+                android:gravity="center"
+                android:padding="@dimen/activity_default_margin"
+                android:textSize="@dimen/header_text_size"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#AAffffff"
+                android:orientation="vertical"
+                android:layout_margin="@dimen/activity_default_margin">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Great Job!"
+                    android:gravity="center"
+                    android:textSize="@dimen/label_text_size"
+                    android:textColor="#aa004eae"
+                    android:id="@+id/bonus_notify"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bonus_earned"
+                    android:textSize="@dimen/label_text_size"
+                    android:gravity="center"
+                    android:layout_margin="@dimen/activity_default_margin"
+                    android:text="One Free Life"
+                    android:textColor="#ffffb500"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="horizontal"
+            android:background="#00575757"
             android:layout_gravity="center|bottom"
-            android:gravity="center">
+            android:gravity="center_horizontal|bottom">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,7 +99,5 @@
                 android:layout_marginStart="@dimen/activity_default_margin"/>
 
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

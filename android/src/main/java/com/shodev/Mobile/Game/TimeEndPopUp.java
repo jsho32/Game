@@ -1,5 +1,6 @@
 package com.shodev.Mobile.Game;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -7,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class TimeEndPopUp extends FragmentActivity {
+public class TimeEndPopUp extends Activity {
+    protected Game game;
 
     /** Called when activity is created */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        game = (Game) getApplication();
         setContentView(R.layout.end_pop_activity);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         setTextViews();
@@ -42,6 +45,9 @@ public class TimeEndPopUp extends FragmentActivity {
                 startActivity(intent);
             }
         });
+
+        TextView finalScore = (TextView) findViewById(R.id.final_score);
+        finalScore.setText(String.valueOf(game.getPointScore()));
     }
 
 }
