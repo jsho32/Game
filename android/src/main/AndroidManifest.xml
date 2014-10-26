@@ -23,7 +23,7 @@
         <activity android:name=".Settings" android:label="Settings" android:screenOrientation="portrait"/>
         <activity android:name=".TimeMode" android:label="Timed Mode" android:screenOrientation="portrait"/>
         <activity android:name=".PointsMode" android:label="Points Mode" android:screenOrientation="portrait"/>
-        <activity android:name=".GameEndPopUp" android:theme="@android:style/Theme.Dialog" android:label="GAME OVER!" android:screenOrientation="portrait"/>
+        <activity android:name=".TimeEndPopUp" android:theme="@android:style/Theme.Dialog" android:label="GAME OVER!" android:screenOrientation="portrait"/>
 
     </application>
 

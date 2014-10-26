@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class GameEndPopUp extends FragmentActivity {
+public class TimeEndPopUp extends FragmentActivity {
 
     /** Called when activity is created */
     @Override
@@ -20,7 +20,7 @@ public class GameEndPopUp extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(GameEndPopUp.this, MainActivity.class);
+        Intent intent = new Intent(TimeEndPopUp.this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -29,7 +29,7 @@ public class GameEndPopUp extends FragmentActivity {
         rePlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GameEndPopUp.this, TimeMode.class);
+                Intent intent = new Intent(TimeEndPopUp.this, TimeMode.class);
                 startActivity(intent);
             }
         });
@@ -38,7 +38,7 @@ public class GameEndPopUp extends FragmentActivity {
         mainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GameEndPopUp.this, MainActivity.class);
+                Intent intent = new Intent(TimeEndPopUp.this, MainActivity.class);
                 startActivity(intent);
             }
         });
